@@ -16,8 +16,8 @@ inputs = {
     tags = merge(
         local.root_config.locals.common_tags, 
         {
-        Env     = "dev"
-        Project = "terragrunt-ec2"
+        Env      = "dev"
+        ec2_type = "terragrunt-ec2"
         }
     )
 }
