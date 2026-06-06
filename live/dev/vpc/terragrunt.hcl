@@ -9,7 +9,7 @@ locals {
 }
 
 terraform {
-  source = "git::https://github.com/<your-repo>/terragrunt-module-vpc.git"
+  source = "git::https://github.com/Revanthsatyam/terragrunt-module-vpc.git"
 }
 
 inputs = {
