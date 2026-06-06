@@ -39,11 +39,20 @@ inputs = {
 
     vpc_id = dependency.vpc.outputs.vpc_id
 
+    # tags = merge(
+    #     local.root_config.locals.common_tags, 
+    #     {
+    #     Env      = "dev"
+    #     ec2_type = "terragrunt-ec2"
+    #     }
+    # )
+
     tags = merge(
-        local.root_config.locals.common_tags, 
-        {
-        Env      = "dev"
-        ec2_type = "terragrunt-ec2"
-        }
+      local.root_config.locals.common_tags,
+      {
+        Env       = local.env_config.locals.environment
+        Region    = local.region_config.locals.aws_region
+        AccountId = local.account_config.locals.aws_account_id
+      }
     )
 }
