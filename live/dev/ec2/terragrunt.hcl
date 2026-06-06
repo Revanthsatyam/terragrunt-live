@@ -1,5 +1,9 @@
 dependency "vpc" {
   config_path = "../vpc"
+
+  mock_outputs = {
+    vpc_id = "vpc-mock123"
+  }
 }
 
 include {
