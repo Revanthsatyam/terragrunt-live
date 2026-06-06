@@ -11,7 +11,21 @@ include {
 }
 
 locals {
-  root_config = read_terragrunt_config(find_in_parent_folders("root.hcl"))
+    root_config = read_terragrunt_config(
+      find_in_parent_folders("root.hcl")
+    )
+
+    account_config = read_terragrunt_config(
+      find_in_parent_folders("account.hcl")
+    )
+
+    region_config = read_terragrunt_config(
+      find_in_parent_folders("region.hcl")
+    )
+
+    env_config = read_terragrunt_config(
+      find_in_parent_folders("env.hcl")
+    )
 }
 
 terraform {
@@ -19,6 +33,8 @@ terraform {
 }
 
 inputs = {
+    test_region = local.region_config.locals.aws_region
+
     security_group_name = "allow-all"
 
     vpc_id = dependency.vpc.outputs.vpc_id
