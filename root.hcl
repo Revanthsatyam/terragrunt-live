@@ -1,10 +1,5 @@
 locals {
-    # aws_region = "us-east-1"
-    region_config = read_terragrunt_config(
-        find_in_parent_folders("region.hcl")
-    )
-
-    aws_region = local.region_config.locals.aws_region
+    aws_region = "us-east-1"
 
     common_tags = {
         ManagedBy = "Terragrunt"
@@ -35,7 +30,7 @@ generate "provider" {
 
     contents = <<EOF
         provider "aws" {
-            region = "${local.aws_region}"
+            region = "us-east-1"
         }
     EOF
 }
