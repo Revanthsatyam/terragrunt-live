@@ -1,5 +1,10 @@
 locals {
-    aws_region = "us-east-1"
+    # aws_region = "us-east-1"
+    region_config = read_terragrunt_config(
+        find_in_parent_folders("region.hcl")
+    )
+
+    aws_region = local.region_config.locals.aws_region
 
     common_tags = {
         ManagedBy = "Terragrunt"
@@ -22,4 +27,15 @@ remote_state {
         dynamodb_table = "terraform-locks"
         encrypt        = true
     }
+}
+
+generate "provider" {
+    path      = "provider.tf"
+    if_exists = "overwrite"
+
+    contents = <<EOF
+        provider "aws" {
+            region = "${local.aws_region}"
+        }
+    EOF
 }
