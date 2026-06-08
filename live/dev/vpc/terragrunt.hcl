@@ -29,7 +29,17 @@ terraform {
     execute      = [
       "powershell",
       "-Command",
-      "Write-Host 'Running before_plan hook for VPC module'"
+      "Write-Host 'VPC plan is about to start...'"
+    ]
+  }
+
+  after_hook "after_plan" {
+    commands     = ["plan"]
+
+    execute      = [
+      "powershell",
+      "-Command",
+      "Write-Host 'VPC plan completed successfully!'"
     ]
   }  
 }
