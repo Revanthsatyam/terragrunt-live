@@ -52,6 +52,8 @@ terraform {
   }  
 }
 
+prevent_destroy = false
+
 inputs = {
   # tags = merge(
   #   local.root_config.locals.common_tags,
