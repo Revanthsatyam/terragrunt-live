@@ -41,6 +41,14 @@ terraform {
       "-Command",
       "Write-Host 'VPC plan completed successfully!'"
     ]
+  }
+
+  extra_arguments "lock_timeout" {
+    commands = get_terraform_commands_that_need_locking()
+
+    arguments = [
+      "-lock-timeout=20m"
+    ]
   }  
 }
 
