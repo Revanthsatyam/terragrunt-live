@@ -22,6 +22,16 @@ locals {
 
 terraform {
   source = "git::https://github.com/Revanthsatyam/terragrunt-module-vpc.git"
+
+  before_hook "before_plan" {
+    commands     = ["plan"]
+
+    execute      = [
+      "powershell",
+      "-Command",
+      "Write-Host 'Running before_plan hook for VPC module'"
+    ]
+  }  
 }
 
 inputs = {
